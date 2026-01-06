@@ -19,7 +19,7 @@ import BookingConsultation from './Components/BookingConsultation'
 
 import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 // import BookingConsultation from './components/BookingConsultation';
-// import Notification from './components/Notification/Notification';
+import Notification from './components/Notification/Notification';
 import ReviewForm from './Components/ReviewForm/ReviewForm'
 import ProfileCard from './Components/ProfileCard/ProfileCard';
 import ReportsLayout from './Components/ReportsLayout/ReportsLayout';
@@ -35,9 +35,10 @@ function App() {
      <HashRouter>
           {/* Display the Navbar component */}
           <Navbar/>
-
+           <Notification> 
           {/* Set up the Routes for different pages */}
           <Routes>
+            
             {/* Define individual Route components for different pages */}
             <Route path="/" element={<Landing_Page/>}/>
             <Route path="/login" element={<Login/>}/>
@@ -50,6 +51,7 @@ function App() {
             <Route path='/report' element={<ReportsLayout/>} />
 
           </Routes>
+           </Notification>
      </HashRouter>
     </div>
   );
