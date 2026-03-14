@@ -77,7 +77,7 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
           <strong>Review:</strong> {formData.review}
         </p>
         <p>
-          <strong>Rating:</strong> {Array(formData.rating).fill('⭐️').join('')}
+          
         </p>
       </div>
     );
@@ -95,13 +95,6 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
         <div>
           <label htmlFor="review">Review:</label>
           <textarea id="review" name="review" value={formData.review} onChange={handleInputChange} />
-        </div>
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <div className="star-rating">
-            {[1, 2, 3, 4, 5].map((rating) => renderStar(rating))}
-            <br />
-          </div>
         </div>
         <button className='btngivereview' type="submit" disabled={submitted}>
           Submit
