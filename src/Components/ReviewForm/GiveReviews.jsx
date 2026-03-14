@@ -42,9 +42,17 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.name && formData.review && formData.rating > 0 && !submitted) {
-      localStorage.setItem(`reviewFormData_${serialNumber}`, JSON.stringify(formData));
-      onReviewSubmit(serialNumber, formData.review); // Pass the review to the parent component
+
+    // rating made optional for submission
+    if (formData.name && formData.review && !submitted) {
+      localStorage.setItem(
+        `reviewFormData_${serialNumber}`,
+        JSON.stringify(formData)
+      );
+
+      // send full data to parent
+      onReviewSubmit(serialNumber, formData);
+
       setSubmitted(true);
       setShowWarning(false);
     } else {
@@ -53,7 +61,9 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
   };
 
   const renderStar = (rating) => {
-    const starClasses = `star ${formData.rating >= rating ? 'filled' : ''} ${formData.rating === rating ? 'clicked' : ''}`;
+    const starClasses = `star ${formData.rating >= rating ? 'filled' : ''} ${
+      formData.rating === rating ? 'clicked' : ''
+    }`;
 
     return (
       <span
@@ -76,9 +86,6 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
         <p>
           <strong>Review:</strong> {formData.review}
         </p>
-        <p>
-          
-        </p>
       </div>
     );
   }
@@ -87,16 +94,35 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <h2>Give Your Feedback</h2>
-        {showWarning && <p className="warning">Please fill out all fields and submit only once.</p>}
+
+        {showWarning && (
+          <p className="warning">
+            Please fill out all fields and submit only once.
+          </p>
+        )}
+
         <div>
           <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
         </div>
+
         <div>
           <label htmlFor="review">Review:</label>
-          <textarea id="review" name="review" value={formData.review} onChange={handleInputChange} />
+          <textarea
+            id="review"
+            name="review"
+            value={formData.review}
+            onChange={handleInputChange}
+          />
         </div>
-        <button className='btngivereview' type="submit" disabled={submitted}>
+
+        <button className="btngivereview" type="submit" disabled={submitted}>
           Submit
         </button>
       </form>
