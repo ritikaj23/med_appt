@@ -60,10 +60,6 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
     }
   };
 
-  const renderStar = (rating) => {
-    const starClasses = `star ${formData.rating >= rating ? 'filled' : ''} ${
-      formData.rating === rating ? 'clicked' : ''
-    }`;
 
     return (
       <span
@@ -122,9 +118,6 @@ const GiveReviews = ({ serialNumber, onReviewSubmit, review }) => {
           />
         </div>
 
-        <button className="btngivereview" type="submit" disabled={submitted}>
-          Submit
-        </button>
       </form>
     </div>
   );
